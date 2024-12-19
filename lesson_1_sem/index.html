@@ -8,10 +8,43 @@
 </head>
 
 <body>
-    <a href="history1.html">Первая история</a>
+    <style>
+        .button-div {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .box {
+            display: flex;
+            gap: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+        }
+    </style>
+    <!-- <a href="history1.html">Первая история</a>
     <a href="history2.html">Вторая история</a>
     <button class="forwardButton">Кнопка вперёд</button>
     <button class="backButton">Кнопка назад</button>
+    <script src="script.js"></script> -->
+    <div class="button-div">
+        <button id="add-button">Добавить элемент</button>
+        <button id="del-button">Удалить элемент</button>
+        <button id="clone-button">Клонировать элемент</button>
+    </div>
+    <div id="div-content" class="content"></div>
     <script src="script.js"></script>
 </body>
 
