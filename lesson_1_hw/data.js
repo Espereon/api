@@ -9,7 +9,7 @@ const data = [
         "title": "shooting",
         "time": "12:00 - 13:00",
         "max_count": 8,
-        "curent_count": 7
+        "curent_count": 8
     },
     {
         "title": "running",
