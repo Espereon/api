@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .loader .fa-spinner {
+            font-size: 48px;
+            color: #333;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate (0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hidder {
+            display: none;
+        }
+    </style>
+
+    <div class="loader">
+        <i class="fas fa-spinner"></i>
+    </div>
+
+    <div class="content hidden">
+        <h1>Заголовок</h1>
+        <p>Содержимое страницы</p>
+        <img src="https://interier-foto.ru/wp-content/uploads/panoramnaya-fotografiya-66068.jpg" alt="котик">
+    </div>
+
+    <script>
+        window.addEventListener('load', function (e) {
+            const contEl = document.querySelector('.content');
+            contEl.classList.remove('hidden');
+
+            const loadEl = document.querySelector('.loader');
+            loadEl.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
