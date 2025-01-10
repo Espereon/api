@@ -73,7 +73,7 @@ let page = 1;
 
 async function fetchPhotos() {
     try {
-        const response = await fetch(`https://api.unsplash.com/photos?page=${page}&per_page=9&client_id=c-FO7mD6wSo7ZPZgDbaQprvL0t_x1Iz3GSTiL4PzK-E`);
+        const response = await fetch(`https://api.unsplash.com/photos?page=1&per_page=9&client_id=c-FO7mD6wSo7ZPZgDbaQprvL0t_x1Iz3GSTiL4PzK-E`);
         const photos = await response.json();
         return photos;
     } catch (error) {
@@ -82,14 +82,21 @@ async function fetchPhotos() {
     }
 }
 
-
-
-// async function loadMorePhotos() {
-//     // создание контента
-// }
-
-// // window.addEventListener('? ', () => {
-// // создание бесконечной прокрутки if ( ) {
-// loadMorePhotos();
-// // Загрузка первой партии фотографий при загрузке страницы
-// loadMorePhotos();
+async function loadMorePhotos() {
+    const responseObj = await fetchPhotos();
+    responseObj.forEach(photo => {
+        const photoElement = document.createElement('div');
+        photoElement.classList.add('photo');
+        const img = document.createElement('img');
+        img.src = photo.urls.small;
+        img.alt = photo.alt_description;
+        photoElement.appendChild(img);
+        photoContainer.appendChild(photoElement);
+    });
+}
+window.addEventListener('scroll', () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        loadMorePhotos();
+    }
+});
+loadMorePhotos();
