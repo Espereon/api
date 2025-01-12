@@ -48,4 +48,4 @@ async function LoadPhotos() {
 };
 
 LoadPhotos();
-// localStorage.clear();
+// localStorage.clear(); // для чистки локального хранилища
