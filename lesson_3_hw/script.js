@@ -28,22 +28,24 @@ async function LoadPhotos() {
         localStorage.setItem(responseObj[randomIndex].id, responseObj[randomIndex].likes);
     } // если в локальном хранилище нет, то записываю данные по ID и лайкам
     countLike.textContent = `Количество лайков = ${localStorage.getItem(responseObj[randomIndex].id)}`; // вывожу количествой лайков
-    window.addEventListener('load', () => {
-        if (responseObj[randomIndex].likes !== parseInt(localStorage.getItem(responseObj[randomIndex].id))) {
-            butEl.classList.add('active');
-        }; 
-    }); // здесь я пытался, чтобы при обновлении страницы проверялось на кол-во лайков и тем самым отображало кнопку лайка нажатой или нет
-    butEl.addEventListener('click', function (e) {
-        if (responseObj[randomIndex].likes <= parseInt(localStorage.getItem(responseObj[randomIndex].id))) {
-            localStorage.setItem(responseObj[randomIndex].id, responseObj[randomIndex].likes + 1)
+    if (parseInt(localStorage.getItem(responseObj[randomIndex].id)) > responseObj[randomIndex].likes) {
+        butEl.classList.add('active');
+    } else {
+        butEl.classList.remove('active');
+    } // здесь я пытался, чтобы при обновлении страницы проверялось на кол-во лайков и тем самым отображало кнопку лайка нажатой или нет
+    butEl.addEventListener('click', function () {
+        const currentLikes = parseInt(localStorage.getItem(responseObj[randomIndex].id));
+        if (butEl.classList.contains('active')) {
+            // Убираем лайк
+            localStorage.setItem(responseObj[randomIndex].id, currentLikes - 1);
+            countLike.textContent = `Количество лайков = ${localStorage.getItem(responseObj[randomIndex].id)}`;
+            butEl.classList.remove('active');
+        } else {
+            // Добавляем лайк
+            localStorage.setItem(responseObj[randomIndex].id, currentLikes + 1);
             countLike.textContent = `Количество лайков = ${localStorage.getItem(responseObj[randomIndex].id)}`;
             butEl.classList.add('active');
         }
-        // } else {
-        //     // localStorage.setItem(responseObj[randomIndex].id, responseObj[randomIndex].likes - 1)
-        //     // countLike.textContent = `Количество лайков = ${localStorage.getItem(responseObj[randomIndex].id)}`;
-        //     // butEl.classList.remove('active');
-        // }  здесь пытался реализовать отжатие лайка, но не получилось
     });
 };
 
